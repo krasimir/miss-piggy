@@ -1,5 +1,13 @@
 <div align="center"><img src="./miss-piggy.jpeg" /></div>
 
+- [Miss Piggy - Test runner for Puppeteer](#miss-piggy---test-runner-for-puppeteer)
+  - [Quick start](#quick-start)
+  - [API](#api)
+    - [CLI](#cli)
+    - [Writing spec files](#writing-spec-files)
+      - [Defining a step](#defining-a-step)
+      - [Expectations](#expectations)
+
 # Miss Piggy - Test runner for [Puppeteer](https://pptr.dev/)
 
 ## Quick start
@@ -132,3 +140,45 @@ There are two ways to define a step. With our without description. Either you pr
 | async content() | It gives you the HTML of the current page |
 | pageLog | An array of items that represent console logs/errors and requests happening inside the browser. |
 
+#### Expectations
+
+The expectations are objects with two properties - `where` and `value`. The `where` is specifying the area which you want to expect. And the value is the actual item that you are searching for. Here are the supported pairs at the moment:
+
+Google analytics *dataLayer*.
+
+```json
+{
+  where: "dataLayer",
+  value: ["event", "conversion", { send_to: "xxxx", allow_custom_scripts: true }],
+}
+```
+
+Search in the HTML. `value` could be also an xpath or RegExp.
+
+```json
+{
+  where: "html",
+  value: "Test runner for Puppeteer",
+}
+```
+
+Matching the URL by a given string. The `value` could be a string but also a RegExp.
+
+```json
+{
+  where: "url",
+  value: "users/registration/thank-you",
+}
+```
+
+Matching http request.
+
+```json
+{
+    where: "request",
+    value: {
+      method: "GET",
+      url: "facebook.net/signals/config/xxxx",
+    },
+  },
+```
