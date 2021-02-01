@@ -2,10 +2,8 @@
   "name": "miss-piggy",
   "version": "0.1.0",
   "description": "Test runner for Puppeteer",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "lib/index.js",
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/krasimir/miss-piggy.git"
@@ -21,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/krasimir/miss-piggy/issues"
   },
-  "homepage": "https://github.com/krasimir/miss-piggy#readme"
+  "homepage": "https://github.com/krasimir/miss-piggy#readme",
+  "dependencies": {
+    "chalk": "4.1.0",
+    "expect": "26.6.2",
+    "faker": "5.2.0",
+    "puppeteer": "5.5.0",
+    "recursive-readdir": "2.2.2",
+    "yargs": "16.2.0"
+  }
 }
