@@ -1,8 +1,11 @@
 {
   "name": "miss-piggy",
-  "version": "0.1.0",
+  "version": "1.0.2",
   "description": "Test runner for Puppeteer",
-  "main": "lib/index.js",
+  "main": "./lib/index.js",
+  "bin": {
+    "miss-piggy": "./lib/index.js"
+  },
   "scripts": {},
   "repository": {
     "type": "git",
