@@ -1,5 +1,7 @@
 <div align="center"><img src="./miss-piggy.jpeg" /></div>
 
+The motivation behind the package is to provide a simple interface on top of [Puppeteer](https://pptr.dev/). In terms of interaction with the page and running expectations.
+
 - [Miss Piggy - Test runner for Puppeteer](#miss-piggy---test-runner-for-puppeteer)
   - [Quick start](#quick-start)
   - [API](#api)
@@ -146,7 +148,7 @@ The expectations are objects with two properties - `where` and `value`. The `whe
 
 Google analytics *dataLayer*.
 
-```json
+```js
 {
   where: "dataLayer",
   value: ["event", "conversion", { send_to: "xxxx", allow_custom_scripts: true }],
@@ -155,7 +157,7 @@ Google analytics *dataLayer*.
 
 Search in the HTML. `value` could be also an xpath or RegExp.
 
-```json
+```js
 {
   where: "html",
   value: "Test runner for Puppeteer",
@@ -164,7 +166,7 @@ Search in the HTML. `value` could be also an xpath or RegExp.
 
 Matching the URL by a given string. The `value` could be a string but also a RegExp.
 
-```json
+```js
 {
   where: "url",
   value: "users/registration/thank-you",
@@ -173,7 +175,7 @@ Matching the URL by a given string. The `value` could be a string but also a Reg
 
 Matching http request.
 
-```json
+```js
 {
     where: "request",
     value: {
