@@ -96,3 +96,39 @@ Arguments that you can pass to the miss-piggy:
 | --specDir | Path. By default is the directory where the process is started | Defines where the module will search for spec files. |
 | --verbose | Default is false | If you pass this argument you'll get a bit more information on what is the current page URL and what the browser is doing. |
 | --logDir | Path. By default is set to "logs" | Where the module will place the logs. |
+
+Example:
+
+```
+> `./node_modules/.bin/miss-piggy --verbose --spec=./myspecfile.spec.js`
+```
+
+### Writing spec files
+
+The overall format of the spec file should be:
+
+```js
+module.exports = {
+  description: "<text>",
+  steps: [ <step definition> ],
+  expectations: [ <expectation> ],
+};
+```
+
+#### Defining a step
+
+There are two ways to define a step. With our without description. Either you provide an array where the first element is the description and the second one is the function or you pass directly the function. Each step function receives a single argument - a `context`. It's an object that contains the following methods/properties:
+
+| property | description |
+| --- | ----------- |
+| browser | The result of `await puppeteer.launch()` |
+| page | The result of `await browser.newPage()` |
+| async clickByText(<string or xpath>, selector = '*', idx = 0) | A function that clicks on a element in the page. The first argument is a string or a [xpath](https://developer.mozilla.org/en-US/docs/Web/XPath). The second argument let you specify the tag name of the DOM element. By default is set to `*` which basically means every element. And the last argument of the function is an number specifying which of the matched element to be clicked (if there are more elements matching). |
+| async type(<string>, xpath = '//input', idx = 0) | Types the provided string to a DOM element matching the xpath. The index as a third argument is needed if more then one elements is matching. |
+| async delay(<interval>) | A function to pause the step. |
+| async screenshot() | Well, creates a screenshot. The file is placed in the logs folder |
+| async waitForNavigation() | If you need to wait for a page load. It's basically a direct proxy to Puppeteer's [waitForNavigation](https://pptr.dev/#?product=Puppeteer&version=v5.5.0&show=api-pagewaitfornavigationoptions). |
+| async getPageURL() | A function that returns the current page URL |
+| async content() | It gives you the HTML of the current page |
+| pageLog | An array of items that represent console logs/errors and requests happening inside the browser. |
+
