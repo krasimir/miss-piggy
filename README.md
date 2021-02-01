@@ -1,5 +1,3 @@
 <div align="center"><img src="./miss-piggy.jpeg" /></div>
 
-# Miss Piggy
-
-Test runner for Puppeteer
+# Miss Piggy - Test runner for [Puppeteer](https://pptr.dev/)

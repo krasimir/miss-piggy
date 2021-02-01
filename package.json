@@ -1,0 +1,25 @@
+{
+  "name": "miss-piggy",
+  "version": "0.1.0",
+  "description": "Test runner for Puppeteer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krasimir/miss-piggy.git"
+  },
+  "keywords": [
+    "puppeteer",
+    "test",
+    "runner",
+    "assert"
+  ],
+  "author": "Krasimir Tsonev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krasimir/miss-piggy/issues"
+  },
+  "homepage": "https://github.com/krasimir/miss-piggy#readme"
+}
