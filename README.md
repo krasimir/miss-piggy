@@ -82,3 +82,17 @@ And finally run `./node_modules/.bin/miss-piggy --verbose=1`. The result will be
 After the execution of the scenarios the runner creates bunch of logs that show you how the step went. In those logs you'll see how the HTML was before and after the step, screenshots, console log messages, errors and requests. Our little example above for example produced:
 
 ![log example](./log.example.png)
+
+## API
+
+### CLI
+
+Arguments that you can pass to the miss-piggy:
+
+| arg | value | description |
+| --- | ----- | ----------- |
+| --spec | Path to a file. | It runs a single spec file. |
+| --specPattern | Regexp string. Default set to "spec\\.js" | A pattern which will match your spec files. |
+| --specDir | Path. By default is the directory where the process is started | Defines where the module will search for spec files. |
+| --verbose | Default is false | If you pass this argument you'll get a bit more information on what is the current page URL and what the browser is doing. |
+| --logDir | Path. By default is set to "logs" | Where the module will place the logs. |
