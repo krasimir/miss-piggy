@@ -110,7 +110,7 @@ Arguments that you can pass to the miss-piggy:
 Example:
 
 ```
-> `./node_modules/.bin/miss-piggy --verbose --spec=./myspecfile.spec.js`
+> ./node_modules/.bin/miss-piggy --verbose --spec=./myspecfile.spec.js
 ```
 
 ### Writing spec files
