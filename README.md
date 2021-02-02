@@ -9,6 +9,7 @@ The motivation behind the package is to provide a simple interface on top of [Pu
     - [Writing spec files](#writing-spec-files)
       - [Defining a step](#defining-a-step)
       - [Expectations](#expectations)
+  - [MISC](#misc)
 
 # Miss Piggy - Test runner for [Puppeteer](https://pptr.dev/)
 
@@ -184,3 +185,7 @@ Matching http request.
     },
   },
 ```
+
+## MISC
+
+* [Miss Piggy - a test runner for Puppeteer](https://krasimirtsonev.com/blog/article/miss-piggy-puppeteer-test-runner)
