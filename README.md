@@ -1,4 +1,4 @@
-<div align="center"><img src="./miss-piggy.jpeg" /></div>
+<div align="center"><img src="./assets/miss-piggy.jpg" /></div>
 
 The motivation behind the package is to provide a simple interface on top of [Puppeteer](https://pptr.dev/). In terms of interaction with the page and running expectations.
 
@@ -91,7 +91,7 @@ And finally run `./node_modules/.bin/miss-piggy --verbose=1`. The result will be
 
 After the execution of the scenarios the runner creates bunch of logs that show you how the step went. In those logs you'll see how the HTML was before and after the step, screenshots, console log messages, errors and requests. Our little example above for example produced:
 
-![log example](./log.example.png)
+![log example](./assets/log.example.png)
 
 ## API
 
