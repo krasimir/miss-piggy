@@ -29,6 +29,7 @@
     "faker": "5.2.0",
     "puppeteer": "5.5.0",
     "recursive-readdir": "2.2.2",
+    "url": "0.11.0",
     "yargs": "16.2.0"
   }
 }
