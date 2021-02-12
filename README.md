@@ -27,31 +27,31 @@ or
 > yarn add miss-piggy
 ```
 
-Then create a scenario file `miss-piggy-scenario.spec.js` with the following content:
+Then create a scenario file `scenario.spec.js` with the following content:
 
 ```js
 module.exports = {
-  description: "Verifying miss-piggy's npm package description",
+  description: "Verifying that I'm saying the age of my blog",
   steps: [
-    [
-      "Opening miss-piggy GitHub page",
-      async (context) => {
-        await context.page.goto(`https://github.com/krasimir/miss-piggy`, {
-          waitUntil: "domcontentloaded",
-        });
-      },
-    ],
-    [
-      "Clicking on the package.json file",
-      async (context) => {
-        await context.clickByText("package.json");
-      },
-    ],
+    async (context) => {
+      await context.page.goto(`https://krasimirtsonev.com/blog`, {
+        waitUntil: "domcontentloaded",
+      });
+    },
+    async (context) => {
+      await context.clickByText("Stats");
+      await context.waitForNavigation();
+    },
   ],
   expectations: [
     {
-      where: "html",
-      value: "Test runner for Puppeteer",
+      pageURLPattern: /blog\/stats$/,
+      items: [
+        {
+          where: "html",
+          value: /This blog is (\d+) years old/,
+        },
+      ],
     },
   ],
 };
@@ -60,34 +60,34 @@ module.exports = {
 And finally run `./node_modules/.bin/miss-piggy --verbose=1`. The result will be:
 
 ```
-🖥️  Spec files found in /Users/krasimir/Work/Krasimir/misspiggyex:
-  ⚙️ /miss-piggy-scenario.spec.js
+🖥️  Spec files found in /Users/krasimir/Work/Krasimir/miss-piggy:
+  ⚙️ /examples/scenario.spec.js
 
 -----------------------------------------------------------------
 
-  Description: Verifying miss-piggy's npm package description
-  File: miss-piggy-scenario.spec.js
+  Description: Verifying that I'm saying the age of my blog
+  File: scenario.spec.js
+  ⚙️ step 1/2
+    ❯ about:blank
+    ❮ https://krasimirtsonev.com/blog
+  ⚙️ step 2/2
+    ❯ https://krasimirtsonev.com/blog
+    ❮ https://krasimirtsonev.com/blog/stats
 
-  ⚙️ Opening miss-piggy GitHub page
-    ⏳ about:blank
-    ⌛ https://github.com/krasimir/miss-piggy
-    ✅ html: "Test runner for Puppeteer"
-
-  ⚙️ Clicking on the package.json file
-    ⏳ https://github.com/krasimir/miss-piggy
-    🛠️  clicking on <a class="js-navigation-open link-gray-dark" title="package.json" href="/krasimir/miss-piggy/blob/main/package.json">package.json</a> (total matches: 3)
-    ⌛ https://github.com/krasimir/miss-piggy/blob/main/package.json
+-----------------------------------------------
 
   📋 Test summary:
+  ⚙️ https://krasimirtsonev.com/blog
+    no expectations for this page
+  ⚙️ https://krasimirtsonev.com/blog/stats
+    ✅ html: /This blog is (\d+) years old/
 
-  ✅ All 1 expectations for miss-piggy-scenario.spec.js are satisfied.
-
-  The /logs/miss-piggy-scenario.spec.js/report.log file is generated.
+  The /logs/scenario.spec.js/report.log file is generated.
 
 -----------------------------------------------------------------
 
   ✨ Results:
-    ✅ /miss-piggy-scenario.spec.js
+    ✅ /examples/scenario.spec.js
 ```
 
 After the execution of the scenarios the runner creates bunch of logs that show you how the step went. In those logs you'll see how the HTML was before and after the step, screenshots, console log messages, errors and requests. Our little example above for example produced:
@@ -122,13 +122,13 @@ The overall format of the spec file should be:
 module.exports = {
   description: "<text>",
   steps: [ <step definition> ],
-  expectations: [ <expectation> ],
+  expectations: [ <expectation definition> ],
 };
 ```
 
 #### Defining a step
 
-There are two ways to define a step. With our without description. Either you provide an array where the first element is the description and the second one is the function or you pass directly the function. Each step function receives a single argument - a `context`. It's an object that contains the following methods/properties:
+A step is basically an async function that receives a single argument - `context`. It's an object that contains the following methods/properties:
 
 | property | description |
 | --- | ----------- |
@@ -145,7 +145,23 @@ There are two ways to define a step. With our without description. Either you pr
 
 #### Expectations
 
-The expectations are objects with two properties - `where` and `value`. The `where` is specifying the area which you want to expect. And the value is the actual item that you are searching for. Here are the supported pairs at the moment:
+The expectations are objects that have `pageURLPattern` and `items`. The pattern is a regular expression that will match the URL of your page. In the `items` we pass other objects with two properties - `where` and `value`. The `where` is specifying the area which you want to expect. And the value is the actual item that you are searching for. For example:
+
+```js
+[
+  {
+    pageURLPattern: /blog\/stats$/,
+    items: [
+      {
+        where: "html",
+        value: /This blog is (\d+) years old/,
+      },
+    ],
+  },
+]
+```
+
+Here are the supported item pairs:
 
 Google analytics *dataLayer*.
 
